@@ -1,6 +1,7 @@
 import streamlit as st
-import requests as req
+import requests 
 from dotenv import load_dotenv
+load_dotenv()
 import os
 API_KEY = os.getenv('WEATHER_API_KEY')
 st.set_page_config(page_title='weather app', page_icon='🌦️')
@@ -14,7 +15,7 @@ city=st.text_input('enter city name')
 
 if(st.button('fetch weather')):
 
-    response  = req.get(f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric')
+    response=requests.get(f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric')
     if(response.status_code == 200):
         st.success('weather data fetched succuessfully')
         data=(response.json())
